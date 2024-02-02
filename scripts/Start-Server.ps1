@@ -1,5 +1,5 @@
 Import-Module /scripts/Server-Tools/Server-Tools.psm1 -Force
-$serverLauncherPath=(Join-Path '/app/server' 'server.exe')
+$serverLauncherPath=(Join-Path '/app/server/ShooterGame/Binaries/Win64/' 'ShooterGameServer.exe')
 
 Start-Sleep 10 # Delay initial startup to give the updater time to start
 $copyConfigs = $true
@@ -30,9 +30,10 @@ While (RunServer)
       Write-Output "Server Name: $env:SERVER_NAME"
       Write-Output "Port: $env:SERVER_PORT"
       Write-Output "Query Port: $env:QUERY_PORT"
+      Write-Output "Map Name: $env:MAP_NAME"
       Write-Output "Additional Arguments (if any): $serverArgs"
 
-      & $serverLauncherPath $serverArgs
+      & $serverLauncherPath "$($env:MAP_NAME)?listen?SessionName=$($env:SERVER_NAME)?ServerPassword=$(env:SERVER_PASSWORD)?ServerAdminPassword=$(env:ADMIN_PASSWORD) -server -log $serverArgs"
     } # if (Test-Path $serverLauncherPath)
         else
     {

@@ -54,6 +54,7 @@ ENV STEAM_APPID="376030" \
     QUERY_PORT="27015" \
     SERVER_NAME="Default Server Name" \
     SERVER_PASSWORD="DefaultPassword" \
+    ADMIN_PASSWORD="DefaultAdminPassword" \
     TEMP_FOLDER="/tmp" \
     TZ="Etc/UTC" \
     FILE_UMASK="022" \
@@ -66,7 +67,8 @@ ENV STEAM_APPID="376030" \
     UPDATES_INTERVAL=15 \
     RCON_PORT=25575 \
     RCON_PASSWORD="ChangeThisPasswordIfUsingRCON" \
-    RCON_MAX_KARMA=60
+    RCON_MAX_KARMA=60 \
+    MAP_NAME=TheIsland
 
 # HEALTHCHECK CMD sv status ddns | grep run || exit 1
 

@@ -47,8 +47,10 @@ removed after all the steps have been taken.
 | ---------------- | ------- | ----------- |
 | SERVER_NAME | Default Server Name | The name to be displayed in the server list |
 | SERVER_PASSWORD | DefaultPassword | The password to be used for the server |
+| ADMIN_PASSWORD | DefaultAdminPassword | The password to be used for admin access to the server (CHANGE THIS FROM THE DEFAULT) |
 | SERVER_PORT | 7777 | The port to be used by the server |
 | QUERY_PORT | 27015 | The query port to be used by the server |
+| MAP_NAME | TheIsland | The name of the map to load. [The full list can be found here](https://ark.fandom.com/wiki/Server_configuration#Map_names) |
 | TZ | Etc/UTC | Time zone for the server. A full list can be [found here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 | FILE_UMASK | 022 | umask value to use for configs, backups, and server files. [This article](https://www.digitalocean.com/community/tutorials/linux-permissions-basics-and-how-to-use-umask-on-a-vps) has a good explanation on permissions and how the umask works
 | UPDATES_ENABLED | true | Whether to check for updates or not |
@@ -58,7 +60,7 @@ it can cause connected users to lose progress |
 | UPDATES_STEAMCMD_ARGS | | Additional arguments to be passed to the steamcmd command |
 | RCON_PORT | 25575 | RCON port, if available for the server
 | RCON_PASSWORD | ChangeThisPasswordIfUsingRCON | Password to use if exposing RCON |
-| RCON_MAX_KARMA | 60 | 
+| RCON_MAX_KARMA | 60 | |
 
 ## Backups
 | Name | Default | Description |
