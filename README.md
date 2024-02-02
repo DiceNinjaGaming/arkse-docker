@@ -1,19 +1,11 @@
-# baseimage
-A base image for game servers
+# Ark: Survival Evolved
+An image for Ark: Survival Evolved dedicated servers.
 
 # IMPORTANT INFO FOR FORKS
 This section contains information related to creating forked repos for specific games. This section should be
 removed after all the steps have been taken.
 
-## GitHub Action changes
-1. Update the .github/workflows/docker-publish.yml to use the correct image name
-
 ## Dockerfile Changes
-1. Update the following environment variables:
-    - STEAM_APPID
-    - SERVER_PROCESS_NAME
-    - SERVER_PORT
-2. If using Wine, uncomment the section to install it
 3. If not using mcRcon, remove the section that installs it
 
 ## Config-Tools.ps1 changes
@@ -36,9 +28,9 @@ removed after all the steps have been taken.
 # System Requirements
 | Name | Description |
 | - | - |
-| Processor | TBD |
-| Memory | TBD |
-| Storage | TBD |
+| Processor | 2 CPU cores with more than 3.0 GHz (for 10 to 15 players) |
+| Memory | 8GB Minimum |
+| Storage | 30-50GB |
 | Internet Connection | Broadband internet connection. Hosting from home will require the ability to configure port forwarding |
 
 # Important folders
@@ -55,7 +47,7 @@ removed after all the steps have been taken.
 | ---------------- | ------- | ----------- |
 | SERVER_NAME | Default Server Name | The name to be displayed in the server list |
 | SERVER_PASSWORD | DefaultPassword | The password to be used for the server |
-| SERVER_PORT | 1234 | The port to be used by the server |
+| SERVER_PORT | 7777 | The port to be used by the server |
 | QUERY_PORT | 27015 | The query port to be used by the server |
 | TZ | Etc/UTC | Time zone for the server. A full list can be [found here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 | FILE_UMASK | 022 | umask value to use for configs, backups, and server files. [This article](https://www.digitalocean.com/community/tutorials/linux-permissions-basics-and-how-to-use-umask-on-a-vps) has a good explanation on permissions and how the umask works
