@@ -34,12 +34,13 @@ WORKDIR /app
 RUN mkdir -p ./backups
 RUN mkdir -p ./server
 RUN mkdir -p ./logs
+RUN mkdir -p ./saves
 
 # Copy configs
 COPY ./configs/supervisord.conf /etc
 # If the workdir changes, also update it in Config-Tools
 WORKDIR /app/configs
-COPY ./configs/game-configs/ .
+# COPY ./configs/game-configs/ .
 
 # Copy scripts
 WORKDIR /scripts
@@ -57,6 +58,7 @@ ENV STEAM_APPID="376030" \
     ADMIN_PASSWORD="DefaultAdminPassword" \
     TEMP_FOLDER="/tmp" \
     TZ="Etc/UTC" \
+    FILE_LIMIT=100000 \
     FILE_UMASK="022" \
     BACKUPS_ENABLED="True" \
     BACKUPS_MAX_AGE=3 \

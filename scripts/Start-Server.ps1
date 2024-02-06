@@ -1,5 +1,6 @@
 Import-Module /scripts/Server-Tools/Server-Tools.psm1 -Force
-$serverLauncherPath=(Join-Path '/app/server/ShooterGame/Binaries/Win64/' 'ShooterGameServer.exe')
+$serverBinaryPath = '/app/server/ShooterGame/Binaries/Linux/'
+$serverLauncherPath=(Join-Path $serverBinaryPath 'ShooterGameServer')
 
 Start-Sleep 10 # Delay initial startup to give the updater time to start
 $copyConfigs = $true
@@ -33,7 +34,11 @@ While (RunServer)
       Write-Output "Map Name: $env:MAP_NAME"
       Write-Output "Additional Arguments (if any): $serverArgs"
 
-      & $serverLauncherPath "$($env:MAP_NAME)?listen?SessionName=$($env:SERVER_NAME)?ServerPassword=$(env:SERVER_PASSWORD)?ServerAdminPassword=$(env:ADMIN_PASSWORD) -server -log $serverArgs"
+      # We need to change to the binary location or there are errors starting the server
+      Set-Location $serverBinaryPath
+      & ulimit -n $env:FILE_LIMIT
+      $startArguments = "$env:MAP_NAME?listen?SessionName=$env:SERVER_NAME?ServerPassword=$env:SERVER_PASSWORD?ServerAdminPassword=$env:ADMIN_PASSWORD -server -log $serverArgs"
+      & $serverLauncherPath $startArguments
     } # if (Test-Path $serverLauncherPath)
         else
     {

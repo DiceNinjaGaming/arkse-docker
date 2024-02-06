@@ -1,29 +1,8 @@
 # Ark: Survival Evolved
 An image for Ark: Survival Evolved dedicated servers.
 
-# IMPORTANT INFO FOR FORKS
-This section contains information related to creating forked repos for specific games. This section should be
-removed after all the steps have been taken.
-
-## Dockerfile Changes
-3. If not using mcRcon, remove the section that installs it
-
-## Config-Tools.ps1 changes
-1. Update the $destinationConfigDirectory variable to point to the config destination, if applicable
-2. Update the $configFiles hash table to include the proper file names and paths
-3. Update the `Copy-Configs` function to move the config file(s) to the proper location(s)
-
-## Start-UpdateService.ps1 changes
-1. If necessary, adjust the arguments in the `RunSteamCMD` function
-
-## Update-ConfigFiles.ps1 changes
-1. Update the config file updates as necessary
-
-## Start-Server.ps1 changes
-1. Update $serverLauncherPath to the correct path and file name
-
-## Start-BackupService.ps1 changes
-1. Update $saveLocation to point to the correct location of the save files
+# THIS IS STILL WIP
+We are still working on adding features and stabilizing the server.
 
 # System Requirements
 | Name | Description |
@@ -39,7 +18,15 @@ removed after all the steps have been taken.
 | /app/server | Game server files |
 | /app/backups | Backup files |
 | /app/logs | Logs for the various processes |
-| /app/configs | Folder that contains the default configuration files. Custom configs can be placed here instead of defining settings changes in environment variables |
+| /app/configs | Folder that contains the default configuration files. Due to the complexity of Ark configuration, you will need to put the config files here rather than define the parameters via environment variables. |
+
+# Imporant notes about the server
+- It is not unusual for the Ark server to take 10-20 minutes to fully start up and be ready to go, especially for a brand new server. This is not a fault of Docker, it's just a huge server
+- It is normal for there to be almost no output in the server.log after the server starts up
+- You MUST increase the number of open files allowed within Linux [see here for instructions](https://steamcommunity.com/app/346110/discussions/10/530646715633129423/?ctp=29). Failure to do this will prevent the server from starting. In addition, if you are running multiple servers (especially if you're running multiple Ark servers), you may want to double the number of open files from the recommendation in that link.
+- The following error message does not necessarily mean something is wrong:
+`[S_API FAIL] SteamAPI_Init() failed; SteamAPI_IsSteamRunning() failed.
+Setting breakpad minidump AppID = 346110`
 
 # Environment Variables
 ## General
@@ -51,6 +38,7 @@ removed after all the steps have been taken.
 | SERVER_PORT | 7777 | The port to be used by the server |
 | QUERY_PORT | 27015 | The query port to be used by the server |
 | MAP_NAME | TheIsland | The name of the map to load. [The full list can be found here](https://ark.fandom.com/wiki/Server_configuration#Map_names) |
+| FILE_LIMIT | 100000 | Max file limit within the container itself. [See this link for how to set this up in your host server](https://steamcommunity.com/app/346110/discussions/10/530646715633129423/?ctp=29) |
 | TZ | Etc/UTC | Time zone for the server. A full list can be [found here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 | FILE_UMASK | 022 | umask value to use for configs, backups, and server files. [This article](https://www.digitalocean.com/community/tutorials/linux-permissions-basics-and-how-to-use-umask-on-a-vps) has a good explanation on permissions and how the umask works
 | UPDATES_ENABLED | true | Whether to check for updates or not |
